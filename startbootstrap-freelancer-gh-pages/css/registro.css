@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #87CEEB; /* Cielo azul */
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(100vw); }
+}
+
+section {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+
+.presentacionLogo {
+    z-index: 1;
+    max-width: 100%;
+    height: auto; /* Ajusta el tamaño según tu logo */
+    opacity: 0;
+    transform: scale(.3);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#cardSing {
+    border-radius: 10px;
+    z-index: 1;
+}
+
+
+#logo {
+    width: 100%;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#cardSing {
+    padding: 1rem;
+    background: #ffffffcf;
+    width: 300px;
+    height: 360px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+    transform: rotate3d(1, 1, 0, 20deg);
+}
+
+.logo-registro {
+    animation: aparecer 2s ease-out;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.nombreForm {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-white {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+
+}
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+        background: #fccb90;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    }
+    
+    @media (min-width: 768px) {
+        .gradient-form {
+            height: 100vh !important;
+        }
+
+    }
+    @media (min-width: 769px) {
+        .gradient-custom-2 {
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+        }
+    }
