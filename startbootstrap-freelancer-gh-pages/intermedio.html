@@ -21,7 +21,11 @@
         min-height: 100vh;
         overflow: hidden;
         overflow-y: scroll;
-        background-image: linear-gradient( 135deg, #FDEB71 10%, #F8D800 100%);
+        background-image: linear-gradient(135deg, #FDEB71 10%, #F8D800 100%);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
         color: #ffffff;
         /* Letras blancas */
         font-family: Arial, sans-serif;
@@ -98,6 +102,7 @@
         padding: 0 15px;
         max-height: 0;
         overflow: hidden;
+        overflow-y: scroll;
         background-color: #f9f9f9;
         transition: max-height 0.4s ease, padding 0.4s ease;
     }
@@ -115,6 +120,120 @@
         padding: 1rem;
         padding-bottom: 3rem;
     }
+
+    /*estilos para la verificacion de img*/
+    h2 {
+        font-size: 1.8em;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    .title {
+        color: #3498db;
+    }
+
+    input[type="file"] {
+        font-size: 1em;
+        margin: 15px 0;
+        padding: 12px;
+        border: 2px solid #3498db;
+        border-radius: 8px;
+        background-color: white;
+        color: #3498db;
+        transition: all 0.3s ease;
+        width: 80%;
+        max-width: 300px;
+    }
+
+    input[type="file"]:hover {
+        border-color: #2980b9;
+        background-color: #eaf2f8;
+    }
+
+    button {
+        padding: 15px 30px;
+        background-color: #d47800;
+        border: none;
+        color: white;
+        font-size: 1.1em;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    #preview {
+        max-width: 30%;
+        margin-top: 20px;
+        display: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #loader {
+        margin: 20px auto;
+        width: 50px;
+        height: 50px;
+        border: 6px solid #ccc;
+        border-top: 6px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        display: none;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    pre {
+        white-space: pre-wrap;
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: left;
+        margin-top: 30px;
+        max-width: 90%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-size: 1em;
+        color: #2c3e50;
+    }
+
+    /* Estilos para dispositivos móviles */
+    @media (max-width: 600px) {
+        h2 {
+            font-size: 1.5em;
+        }
+
+        input[type="file"] {
+            width: 85%;
+            font-size: 0.9em;
+        }
+
+        button {
+            font-size: 1em;
+            padding: 12px 25px;
+        }
+
+        pre {
+            font-size: 0.9em;
+            margin: 20px 5%;
+        }
+
+        #preview {
+            margin-top: 15px;
+            max-width: 40%;
+        }
+    }
 </style>
 
 <body>
@@ -130,7 +249,8 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <span id="imgSilaba">
-                                    <img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/1.png" alt=""  width="250">
+                                    <img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/1.png"
+                                        alt="" width="250">
                                 </span>
                             </div>
                             <div style="
@@ -186,15 +306,48 @@
                     <div class="accordion-content">
                         <div class="card text-center p-3">
                             <span id="imgAprendizaje">
-                                <img id="exerciseIMG" src="./assets/img/intermedio/ejercicios intermedio/1.jpg" width="250" alt="">
+                                <img id="exerciseIMG" src="./assets/img/intermedio/ejercicios intermedio/1.jpg"
+                                    width="250" alt="">
                             </span>
                             <p id="word" style="font-size: 2rem; font-weight: 700;">Ca_</p>
-                            <div id="options-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;"></div>
+                            <div id="options-container"
+                                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;"></div>
                             <div style="margin-top: 10px;">
                                 <i id="izquierda" class="bi bi-arrow-left btn btn-danger" onclick="prevExercise()"></i>
                                 <i id="derecha" class="bi bi-arrow-right btn btn-success" onclick="nextExercise()"></i>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <h2 class="text-black card text-center p-2">APRENDE A ESCRIBIR</h2>
+                <div class="accordion" id="execiseEscritura">
+                    <div class="accordion-header">ESCRITURA</div>
+                    <div class="accordion-content">
+
+                        <div class="container p-4 text-center">
+
+                            <span id="imgWrite">
+                                <img id="exerciseIMG" src="./assets/img/intermedio/ejercicios intermedio/1.jpg"
+                                    width="250" alt="">
+                            </span>
+                            <div class="lineal" style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                                <div class="linea"></div>
+                                <input type="file" id="imagen" accept="image/*" class="bg bg-primary text-black">
+                                <button onclick="escanearImagen()">Escanear</button>
+                            </div>
+                            <div id="loader"></div>
+                            <pre id="resultado" class="text-center"></pre>
+                            <div class="group text-center"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                <img id="preview" alt="Vista previa de la imagen"><br>
+                            </div>
+
+                            <div style="margin-top: 10px;">
+                                <i id="imgLeft" class="bi bi-arrow-left btn btn-danger" onclick="prevExercise()"></i>
+                                <i id="imgRight" class="bi bi-arrow-right btn btn-success" onclick="nextExercise()"></i>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

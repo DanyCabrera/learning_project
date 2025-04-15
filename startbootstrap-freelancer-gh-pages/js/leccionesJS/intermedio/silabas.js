@@ -51,17 +51,18 @@ recognition.lang = 'es-ES';
 recognition.interimResults = false;
 
 const mensajeBienvenida = "Bienvenido a la lección de las sílabas, palabras simples. Escucha y repite las palabras que se te presentarán, Al final encontrarás ejercicios que te ayudaran a reforzar la pronunciación de las letras que aprenderas a lo largo de este módulo ¡Vamos a comenzar!";
-
-function leerBienvenida() {
-    const speech = new SpeechSynthesisUtterance(mensajeBienvenida);
-    speech.volume = 1; // Volumen ajustado a un valor válido (0-1)
-    speech.rate = 1.5;
-    speech.pitch = 0.4;
-    speech.lang = 'es-ES';
-    window.speechSynthesis.speak(speech);
-}
-
-leerBienvenida(mensajeBienvenida);
+let l = false;
+window.addEventListener('load', () => {
+    if (!l) {
+        const speech = new SpeechSynthesisUtterance(mensajeBienvenida);
+        speech.volume = 1;
+        speech.rate = 1.5;
+        speech.pitch = 0.4;
+        speech.lang = 'es-ES';
+        window.speechSynthesis.speak(speech);
+    }
+    l = true;
+});
 
 const micSilaba = document.getElementById('micSilaba'); //micrfono
 const imagenSilaba = document.getElementById('imgSilaba'); //imagenes
@@ -87,10 +88,10 @@ const flechaDerecha2 = document.getElementById('arrowRight2'); //flecha derecha
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/14.png" alt=""  width="250">',
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/15.png" alt=""  width="250">',
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/16.png" alt=""  width="250">',
-        
+
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/17.png" alt=""  width="250">',
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/18.png" alt=""  width="250">',
-        
+
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/20.png" alt=""  width="250">',
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/21.png" alt=""  width="250">',
         '<img src="./assets/img/intermedio/El texto del párrafo/El texto del párrafo/22.png" alt=""  width="250">',

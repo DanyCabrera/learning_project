@@ -51,17 +51,19 @@ recognition.continuous = false;
 recognition.lang = 'es-ES';
 recognition.interimResults = false;
 
-const mensajeBienvenida = "Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras";
-
-function leerBienvenida() {
-    const speech = new SpeechSynthesisUtterance(mensajeBienvenida);
-    speech.volume = 1;
-    speech.rate = 1.5;
-    speech.pitch = 0.4;
-    speech.lang = 'es-ES';
-    window.speechSynthesis.speak(speech);
-}
-leerBienvenida(mensajeBienvenida);
+const mensajeBienvenida =""; //"Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras";
+let l = false;
+window.addEventListener('load', () => {
+    if (!l) {
+        const speech = new SpeechSynthesisUtterance(mensajeBienvenida);
+        speech.volume = 1;
+        speech.rate = 1.5;
+        speech.pitch = 0.4;
+        speech.lang = 'es-ES';
+        window.speechSynthesis.speak(speech);
+    }
+    l = true;
+});
 
 //SECCIÓN DE APRENDER ORACIONES
 const imgAvanzado = document.getElementById('imgAvanzados');
@@ -230,3 +232,5 @@ document.getElementById("izquierda").addEventListener("click", anteriorOracion);
 document.getElementById("derecha").addEventListener("click", siguienteOracion);
 
 cargarOracion();
+
+//seccion de verificacion de img
