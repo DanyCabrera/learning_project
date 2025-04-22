@@ -51,7 +51,7 @@ recognition.continuous = false;
 recognition.lang = 'es-ES';
 recognition.interimResults = false;
 
-const mensajeBienvenida =""; //"Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras";
+const mensajeBienvenida = ""; //"Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras";
 let l = false;
 window.addEventListener('load', () => {
     if (!l) {
@@ -67,7 +67,7 @@ window.addEventListener('load', () => {
 
 //SECCIÓN DE APRENDER ORACIONES
 const imgAvanzado = document.getElementById('imgAvanzados');
-const mic =  document.getElementById('mic');
+const mic = document.getElementById('mic');
 const right = document.getElementById('arrowRight');
 const left = document.getElementById('arrowLeft');
 
@@ -99,32 +99,32 @@ const oraciones = [
     'El tren pasa temprano por la estación'
 ];
 
-    //función para actualizar las imagenes
-    function updateIMG(){
-        imgAvanzado.innerHTML = imgOraciones[index];
-    };
-    //funcion para usar el asistente de vos
-    function talk(palabra) {
-        const speech = new SpeechSynthesisUtterance(palabra);
-        speech.lang = 'es-ES';
-        window.speechSynthesis.speak(speech);
-    };
+//función para actualizar las imagenes
+function updateIMG() {
+    imgAvanzado.innerHTML = imgOraciones[index];
+};
+//funcion para usar el asistente de vos
+function talk(palabra) {
+    const speech = new SpeechSynthesisUtterance(palabra);
+    speech.lang = 'es-ES';
+    window.speechSynthesis.speak(speech);
+};
 
-    left.addEventListener('click', () => {
-        index = (index - 1 + imgOraciones.length) % imgOraciones.length;
-        updateIMG();
-    });
-    
-    right.addEventListener('click', () => {
-        index = (index + 1) % imgOraciones.length;
-        updateIMG()
-    });
+left.addEventListener('click', () => {
+    index = (index - 1 + imgOraciones.length) % imgOraciones.length;
+    updateIMG();
+});
 
-    mic.addEventListener('click', () => {
-        updateIMG();
-        talk(oraciones[index]);
-    });
+right.addEventListener('click', () => {
+    index = (index + 1) % imgOraciones.length;
     updateIMG()
+});
+
+mic.addEventListener('click', () => {
+    updateIMG();
+    talk(oraciones[index]);
+});
+updateIMG()
 
 
 //SECCIÓN DE EJERCICIO
@@ -132,7 +132,7 @@ const exercAvan = document.getElementById('execiseAvanzado');
 const inst = "En este modúlo aprenderas a ordenar las oraciones de lo que aprendiste anteriormente"
 let leer = false
 exercAvan.addEventListener('click', () => {
-    if(!leer) {
+    if (!leer) {
         const speech = new SpeechSynthesisUtterance(inst);
         speech.lang = 'es-ES';
         window.speechSynthesis.speak(speech);
@@ -233,4 +233,90 @@ document.getElementById("derecha").addEventListener("click", siguienteOracion);
 
 cargarOracion();
 
-//seccion de verificacion de img
+//seccion de verificacion de imgenes
+
+const resultado = document.getElementById('oracion');
+const input = document.getElementById('imagen');
+const loader = document.getElementById("loader");
+
+input.addEventListener('change', () => {
+    const archivo = input.files[0];
+    if (archivo) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(archivo);
+    }
+});
+
+async function escanearImagen() {
+
+    const archivo = input.files[0];
+    if (!archivo) {
+        resultado.textContent = '⚠️ Por favor selecciona una imagen.';
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+        const base64 = reader.result;
+
+        const formData = new FormData();
+        formData.append('isTable', 'false');
+        formData.append('OCREngine', '2'); // Mejor para manuscrita
+        formData.append('base64Image', base64);
+        formData.append('language', 'spa');
+        formData.append('apikey', 'K84777560588957'); // Tu clave API
+
+        loader.style.display = 'block';
+        resultado.textContent = '';
+
+        try {
+            const response = await fetch('https://api.ocr.space/parse/image', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            const texto = data.ParsedResults?.[0]?.ParsedText?.toLowerCase() || "";
+
+            let string = texto.split(" ");
+            if (string.length < 3) {
+                const speech = new SpeechSynthesisUtterance("Para que sea una oracion correcta, la oración tiene que ser al menos de 3 o mas palabras");
+                speech.lang = 'es-ES';
+                window.speechSynthesis.speak(speech);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "warning",
+                    title: texto + " no es una oracion",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                resultado.textContent = `📝\n${texto}`;
+            } else {
+                const speech = new SpeechSynthesisUtterance("Tú oración es correcta");
+                speech.lang = 'es-ES';
+                window.speechSynthesis.speak(speech);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Correcto",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                resultado.textContent = `📝\n${texto}`;
+            } 
+
+        } catch (error) {
+            console.error("Error:", error);
+            resultado.textContent = '❌ Hubo un error al procesar la imagen.';
+        } finally {
+            loader.style.display = 'none';
+        }
+    };
+
+    reader.readAsDataURL(archivo);
+}

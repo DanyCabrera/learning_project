@@ -283,7 +283,6 @@
                     </div>
                 </div>
                 <br>
-                <!--EJERCICIO PARA EL ORDEN DE PALABRAS-->
                 <h2 class="text-black card text-center p-2">APRENDER</h2>
                 <div class="accordion" id="execiseAvanzado">
                     <div class="accordion-header">EJERCICIO</div>
@@ -302,6 +301,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Portfolio para aprender a escribir-->
                 <h2 class="text-black card text-center p-2">APRENDE A ESCRIBIR</h2>
                 <div class="accordion" id="execiseEscritura">
                     <div class="accordion-header">ESCRITURA</div>
@@ -309,9 +309,8 @@
 
                         <div class="container p-4 text-center">
 
-                            <span id="imgWrite">
-                                <img id="exerciseIMG" src="./assets/img/intermedio/ejercicios intermedio/1.jpg"
-                                    width="250" alt="">
+                            <span id="imgWrite" class="text-black text-center" style="display: flex; justify-content: center; align-items: center;">
+                                <pre id="oracion" class="text-center text-black">Resultado </pre>
                             </span>
                             <div class="lineal"
                                 style="display: flex; justify-content: center; align-items: center; gap: 5px;">
@@ -320,16 +319,17 @@
                                 <button onclick="escanearImagen()">Escanear</button>
                             </div>
                             <div id="loader"></div>
-                            <pre id="resultado" class="text-center"></pre>
                             <div class="group text-center"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <img id="preview" alt="Vista previa de la imagen"><br>
                             </div>
-
+                            
+                            <!--
                             <div style="margin-top: 10px;">
-                                <i id="imgLeft" class="bi bi-arrow-left btn btn-danger" onclick="prevExercise()"></i>
-                                <i id="imgRight" class="bi bi-arrow-right btn btn-success" onclick="nextExercise()"></i>
+                                <i id="imgLeft" class="bi bi-arrow-left btn btn-danger"></i>
+                                <i id="imgRight" class="bi bi-arrow-right btn btn-success"></i>
                             </div>
+                            -->
                         </div>
 
                     </div>

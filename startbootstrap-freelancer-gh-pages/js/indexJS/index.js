@@ -1,6 +1,6 @@
 const exit = document.getElementById('exit');
 exit.addEventListener("click", (e) => {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
 });
 
 const nivel1 = document.getElementById('nivel1');
