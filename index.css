@@ -25,7 +25,7 @@ body {
 
 /* Estilo del logo con animación suave y adaptable */
 .imgLogo {
-    width: 200px;
+    width: 400px;
     max-width: 80%;
     height: auto;
     filter: drop-shadow(10px 10px 5px #000);

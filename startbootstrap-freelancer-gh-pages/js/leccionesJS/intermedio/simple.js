@@ -1,10 +1,14 @@
-const micSimple = document.getElementById('micSimple'); //micrfono
-const imagenSimple = document.getElementById('simplesIMG'); //imagenes
+const micSimple = document.getElementById('micSimple'); //micrófono para leer la palabra
+const imagenSimple = document.getElementById('simplesIMG'); //contenedor de imágenes
 const flechaIzquierda3 = document.getElementById('arrowLeft3'); //flecha izquierda
 const flechaDerecha3 = document.getElementById('arrowRight3'); //flecha derecha
+
+
 (() => {
     let index = 0;
 
+    const hablarMicrofono = document.getElementById('micSimple2'); //micrófono para validar la palabra hablada
+    const resultadoDiv = document.getElementById('resultado');
     const imgSimple = [
         '<img src="/startbootstrap-freelancer-gh-pages/assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple1.jpg" alt="" width="250">',
         '<img src="/startbootstrap-freelancer-gh-pages/assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple2.jpg" alt="" width="250">',
@@ -26,7 +30,7 @@ const flechaDerecha3 = document.getElementById('arrowRight3'); //flecha derecha
         '<img src="/startbootstrap-freelancer-gh-pages/assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple18.jpg" alt="" width="250">',
         '<img src="/startbootstrap-freelancer-gh-pages/assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple19.jpg" alt="" width="250">',
         '<img src="/startbootstrap-freelancer-gh-pages/assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple20.jpg" alt="" width="250">'
-    ]
+    ];
 
     const palabrasSimples = [
         "araña",
@@ -49,8 +53,7 @@ const flechaDerecha3 = document.getElementById('arrowRight3'); //flecha derecha
         "silla",
         "lápiz",
         "mesa"
-    ]
-
+    ];
 
     // Función para actualizar la imagen
     function actualizarImagen() {
@@ -77,12 +80,59 @@ const flechaDerecha3 = document.getElementById('arrowRight3'); //flecha derecha
         actualizarImagen();
     });
 
-    // Event listener para el micrófono
+    // Event listener para el micSimple (leer la palabra)
     micSimple.addEventListener('click', (event) => {
         event.preventDefault();
-        actualizarImagen();
         leerPalabra(palabrasSimples[index]);
     });
+
+    // Reconocimiento de voz para validar la palabra actual
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        resultadoDiv.innerHTML = "Tu navegador no soporta reconocimiento de voz.";
+    } else {
+        const recognition = new SpeechRecognition();
+        recognition.lang = "es-ES";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        hablarMicrofono.onclick = function () {
+            resultadoDiv.innerHTML = "Escuchando...";
+            recognition.start();
+            resultadoDiv.innerHTML = ""; // Limpiar resultados anteriores
+        };
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript.trim().toLowerCase();
+            //resultadoDiv.innerHTML = `Dijiste: <b>${transcript}</b>`;
+
+            // Solo valida la palabra actual
+            if (transcript === palabrasSimples[index]) {
+                hablar("¡Muy bien! Lo dijiste correctamente. Palabra reconocida: " + palabrasSimples[index]);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "<br><span style='color:green'>¡Correcto!: La palabra es: </span>" + transcript,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                resultadoDiv.innerHTML += "<br><span style='color:green'>¡Correcto!</span>";
+            } else {
+                hablar("Intenta de nuevo, no es la palabra correcta.");
+                resultadoDiv.innerHTML += `<br><span style='color:red'>No es correcto, intenta decir: <b>${palabrasSimples[index]}</b></span>`;
+            }
+        };
+
+        recognition.onerror = function (event) {
+            resultadoDiv.innerHTML = "Error al reconocer la voz: " + event.error;
+        };
+
+        function hablar(texto) {
+            const mensaje = new SpeechSynthesisUtterance(texto);
+            mensaje.lang = "es-ES";
+            window.speechSynthesis.speak(mensaje);
+        }
+    }
 
     // Inicializar la primera imagen
     actualizarImagen();
@@ -267,6 +317,7 @@ function limpiarEscaneoAnterior() {
     input.value = ''; // También borramos el input para forzar que suba otra imagen
 }
 
+
 // Verificar si la palabra encontrada corresponde con la imagen actual
 async function escanearImagen() {
     const archivo = input.files[0];
@@ -283,7 +334,7 @@ async function escanearImagen() {
         formData.append('OCREngine', '2'); // OCR Engine 2 es mejor con manuscrita
         formData.append('base64Image', base64);
         formData.append('language', 'spa'); // Cambia a 'eng' si es necesario
-        formData.append('apikey', 'K84777560588957'); // Tu clave API
+        formData.append('apikey', 'K81367823588957'); // Tu clave API
 
         loader.style.display = 'block';
         resultado.textContent = '';
@@ -298,11 +349,12 @@ async function escanearImagen() {
             const texto = data.ParsedResults?.[0]?.ParsedText?.toLowerCase() || "";
 
             // Normalizar texto y palabra esperada
+
             const textoNormalizado = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             const palabraEsperada = palabrasSilabas[f].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-            if (textoNormalizado.includes(palabraEsperada)) {
-                resultado.innerHTML = `✅ ¡Correcto! La palabra es <strong>${palabraEsperada}</strong>`;
+            if (textoNormalizado.includes(palabraEsperada.toLowerCase())) {
+                resultado.innerHTML = `✅ ¡Correcto! La palabra es <strong>${palabraEsperada}</strong>, palabra reconocida`;
                 const speech = new SpeechSynthesisUtterance("Correcto, la palabra es " + palabraEsperada);
                 speech.lang = 'es-ES';
                 window.speechSynthesis.speak(speech);

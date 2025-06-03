@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function verificarLetra(letraSeleccionada, letraCorrecta) {
         if (letraSeleccionada === letraCorrecta) {
-            const speech = new SpeechSynthesisUtterance("Correcto");
+            const speech = new SpeechSynthesisUtterance("Correcto, letra reconocida");
             speech.lang = 'es-ES';
             window.speechSynthesis.speak(speech);
             Swal.fire({
@@ -334,3 +334,5 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     actualizarImg();
 });
+
+const btnmic = document.getElementById("micAbecedario");

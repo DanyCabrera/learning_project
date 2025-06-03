@@ -50,7 +50,7 @@ recognition.continuous = false;
 recognition.lang = 'es-ES';
 recognition.interimResults = false;
 
-const mensajeBienvenida = "Bienvenido a la lección de las sílabas, palabras simples. Escucha y repite las palabras que se te presentarán, Al final encontrarás ejercicios que te ayudaran a reforzar la pronunciación de las letras que aprenderas a lo largo de este módulo ¡Vamos a comenzar!";
+const mensajeBienvenida = "Bienvenido a la lección de las sílabas, palabras simples. Escucha y repite las palabras que se te presentarán, en el modúlo dos vas a poder practicar a pronunciar las palabras, Al final encontrarás ejercicios que te ayudaran a reforzar la pronunciación de las letras que aprenderas a lo largo de este módulo ¡Vamos a comenzar!";
 let l = false;
 window.addEventListener('load', () => {
     if (!l) {

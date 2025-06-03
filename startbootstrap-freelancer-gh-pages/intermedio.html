@@ -271,7 +271,7 @@
                     </div>
                 </div>
 
-                <div class="accordion">
+                <div class="accordion" id="execiseSilaba">
                     <div class="accordion-header">PALABRAS SIMPLES</div>
                     <div class="accordion-content">
                         <div class="card text-center">
@@ -280,6 +280,7 @@
                                     <img src="./assets/img/principiante/palabras simples-20250216T220736Z-001/palabras simples/simple1.jpg"
                                         alt="">
                                 </span>
+                                <div id="resultado"></div>
                             </div>
                             <div style="
                                 display: grid;
@@ -291,9 +292,12 @@
                                 <button id="arrowLeft3" class="btn btn-danger">
                                     <i class="bi bi-arrow-left"></i>
                                 </button>
+                                </button>
                                 <button id="arrowRight3" class="btn btn-success">
                                     <i class="bi bi-arrow-right"></i>
                                 </button>
+                                <button class="btn btn-secondary" id="micSimple2">
+                                    <i class="bi bi-mic-fill"></i>
                             </div>
                         </div>
                     </div>
@@ -330,13 +334,13 @@
                                 <img id="exerciseIMG" src="./assets/img/intermedio/ejercicios intermedio/1.jpg"
                                     width="250" alt="">
                             </span>
-                            <div class="lineal" style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                            <div class="lineal"
+                                style="display: flex; justify-content: center; align-items: center; gap: 5px;">
                                 <div class="linea"></div>
                                 <input type="file" id="imagen" accept="image/*" class="bg bg-primary text-black">
                                 <button onclick="escanearImagen()">Escanear</button>
                             </div>
                             <div id="loader"></div>
-                            <pre id="resultado" class="text-center"></pre>
                             <div class="group text-center"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <img id="preview" alt="Vista previa de la imagen"><br>

@@ -14,7 +14,7 @@ function leerBienvenida() {
 }
 
 // Escuchar el evento DOMContentLoaded para leer la bienvenida una vez al cargar la página
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("click", () => {
     if (!m) {
         leerBienvenida();
         m = true;

@@ -51,7 +51,7 @@ recognition.continuous = false;
 recognition.lang = 'es-ES';
 recognition.interimResults = false;
 
-const mensajeBienvenida = ""; //"Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras";
+const mensajeBienvenida = "Bienvenido a la leccion de avanzados, aca aprenderas oraciones y como ejercicio aprenderas a ordenar palabras, támbien aprenderas a escribir oraciones";
 let l = false;
 window.addEventListener('load', () => {
     if (!l) {
@@ -129,7 +129,7 @@ updateIMG()
 
 //SECCIÓN DE EJERCICIO
 const exercAvan = document.getElementById('execiseAvanzado');
-const inst = "En este modúlo aprenderas a ordenar las oraciones de lo que aprendiste anteriormente"
+const inst = "En este modúlo aprenderas a ordenar las oraciones de lo que aprendiste anteriormente, las palabras de las oraciones estan desordenadas, debes darle click para seleccionar la palabra que va primero, luego la segunda y así sucesivamente, hasta que completes la oración, si lo haces bien el sistema te dirá que sigas con el ejercicio, si no lo es te dirá que intentes de nuevo";
 let leer = false
 exercAvan.addEventListener('click', () => {
     if (!leer) {
@@ -234,6 +234,17 @@ document.getElementById("derecha").addEventListener("click", siguienteOracion);
 cargarOracion();
 
 //seccion de verificacion de imgenes
+const execiseEscritura = document.getElementById('execiseEscritura');
+const exerEs = "En este modúlo aprenderás a escribir oraciones, para esto debes escrbir la oración en una hoja en blanco, tomarle foto y subirlo, el sistema te dirá si la oración es correcta o no, si es correcta te dirá que sigas con el ejercicio, si no lo es te dirá que intentes de nuevo";
+let leerIn = false
+execiseEscritura.addEventListener('click', () => {
+    if (!leerIn) {
+        const speech = new SpeechSynthesisUtterance(exerEs);
+        speech.lang = 'es-ES';
+        window.speechSynthesis.speak(speech);
+    }
+    leerIn = true;
+})
 
 const resultado = document.getElementById('oracion');
 const input = document.getElementById('imagen');
@@ -269,7 +280,7 @@ async function escanearImagen() {
         formData.append('OCREngine', '2'); // Mejor para manuscrita
         formData.append('base64Image', base64);
         formData.append('language', 'spa');
-        formData.append('apikey', 'K84777560588957'); // Tu clave API
+        formData.append('apikey', 'K81367823588957'); // Tu clave API
 
         loader.style.display = 'block';
         resultado.textContent = '';
@@ -291,13 +302,13 @@ async function escanearImagen() {
                 Swal.fire({
                     position: "top-center",
                     icon: "warning",
-                    title: texto + " no es una oracion",
+                    title: `${texto} no es una oracion`,
                     showConfirmButton: false,
                     timer: 3000
                 });
                 resultado.textContent = `📝\n${texto}`;
             } else {
-                const speech = new SpeechSynthesisUtterance("Tú oración es correcta");
+                const speech = new SpeechSynthesisUtterance("Esta es una oración, sigue practicando");
                 speech.lang = 'es-ES';
                 window.speechSynthesis.speak(speech);
                 Swal.fire({
@@ -308,7 +319,7 @@ async function escanearImagen() {
                     timer: 2000
                 });
                 resultado.textContent = `📝\n${texto}`;
-            } 
+            }
 
         } catch (error) {
             console.error("Error:", error);

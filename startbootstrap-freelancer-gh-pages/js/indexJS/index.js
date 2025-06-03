@@ -5,7 +5,7 @@ exit.addEventListener("click", (e) => {
 
 const nivel1 = document.getElementById('nivel1');
 const nivel2 = document.getElementById('nivel2');
-const nivel3 = document.getElementById('nivel3');
+const nivel3 = document.getElementById('nivel3'); 
 
 const recognition = new webkitSpeechRecognition();
 recognition.continuous = true;
