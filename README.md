@@ -1,5 +1,80 @@
 # Proyecto Aprendizaje
 
+## Justificación del Proyecto
+
+### ¿Por qué este Proyecto?
+Este proyecto fue desarrollado con el objetivo de crear una plataforma educativa interactiva que aborda una necesidad fundamental en el proceso de aprendizaje: la enseñanza de conceptos básicos de lenguaje y comunicación de una manera moderna, atractiva y efectiva.
+
+### Beneficios y Ventajas
+1. **Aprendizaje Interactivo**
+   - Combina elementos visuales, auditivos y prácticos
+   - Fomenta la participación activa del usuario
+   - Facilita la retención de información
+
+2. **Accesibilidad**
+   - Disponible en cualquier dispositivo con navegador web
+   - No requiere instalación de software adicional
+   - Interfaz intuitiva y fácil de usar
+
+3. **Estructura Progresiva**
+   - Contenido organizado por niveles de dificultad
+   - Permite un aprendizaje gradual y estructurado
+   - Adaptable a diferentes ritmos de aprendizaje
+
+4. **Innovación Educativa**
+   - Utiliza tecnologías web modernas
+   - Incorpora elementos multimedia
+   - Ofrece retroalimentación inmediata
+
+5. **Impacto Social**
+   - Facilita el acceso a la educación
+   - Reduce barreras de aprendizaje
+   - Promueve la alfabetización digital
+
+### Objetivos Específicos
+1. **Educativos**
+   - Facilitar el aprendizaje de conceptos básicos
+   - Mejorar la comprensión y retención
+   - Fomentar la práctica constante
+
+2. **Técnicos**
+   - Demostrar la aplicación de tecnologías web modernas
+   - Crear una experiencia de usuario óptima
+   - Implementar buenas prácticas de desarrollo
+
+3. **Sociales**
+   - Contribuir a la educación digital
+   - Promover el aprendizaje autónomo
+   - Facilitar el acceso a recursos educativos
+
+### Público Objetivo
+- Estudiantes de nivel básico
+- Personas en proceso de alfabetización
+- Educadores y padres de familia
+- Cualquier persona interesada en aprender
+
+### Valor Agregado
+1. **Metodología**
+   - Enfoque práctico y participativo
+   - Sistema de evaluación continua
+   - Retroalimentación personalizada
+
+2. **Tecnología**
+   - Interfaz moderna y responsiva
+   - Animaciones y elementos interactivos
+   - Optimización para diferentes dispositivos
+
+3. **Contenido**
+   - Material educativo estructurado
+   - Ejercicios prácticos
+   - Sistema de progreso y evaluación
+
+### Impacto Esperado
+- Mejora en el proceso de aprendizaje
+- Mayor engagement de los usuarios
+- Facilitación del acceso a la educación
+- Contribución al desarrollo de habilidades digitales
+
 ## Descripción
 Este proyecto es una plataforma educativa interactiva diseñada para enseñar conceptos básicos de lenguaje y comunicación. La plataforma está estructurada en diferentes niveles de dificultad, desde principiante hasta avanzado, y utiliza tecnologías web modernas para crear una experiencia de aprendizaje atractiva y efectiva.
 
@@ -127,7 +202,7 @@ PROYECTO_APRENDIZAJE/
 ## Instalación
 1. Clona este repositorio:
 ```bash
-git clone [URL_DEL_REPOSITORIO]
+git clone https://github.com/DanyCabrera/learning_project
 ```
 
 2. Navega al directorio del proyecto:
@@ -146,6 +221,113 @@ npm install
 3. Interactúa con las lecciones y ejercicios
 4. Utiliza los controles de navegación para moverte entre secciones
 5. Completa los ejercicios para evaluar tu progreso
+
+## Manual de Usuario
+
+### 1. Página de Inicio
+- **Acceso**: Abre el archivo `index.html` en tu navegador web
+- **Navegación Principal**:
+  - Botón "Principiante": Accede al contenido básico
+  - Botón "Intermedio": Accede al contenido de nivel medio
+  - Botón "Avanzado": Accede al contenido experto
+
+### 2. Nivel Principiante
+#### 2.1 Sección Vocales
+- **Acceso**: Haz clic en "Principiante" y selecciona "VOCALES"
+- **Controles**:
+  - Botón de reproducción 🔊: Escucha la pronunciación
+  - Flechas ⬅️ ➡️: Navega entre las diferentes vocales
+  - Imagen central: Muestra la vocal actual
+- **Ejercicios**:
+  - Identifica la vocal mostrada
+  - Repite la pronunciación
+  - Completa los ejercicios de reconocimiento
+
+#### 2.2 Sección Abecedario
+- **Acceso**: Haz clic en "Principiante" y selecciona "ABECEDARIO"
+- **Controles**:
+  - Botón de reproducción 🔊: Escucha la pronunciación de la letra
+  - Flechas ⬅️ ➡️: Navega entre las letras del abecedario
+  - Imagen central: Muestra la letra actual
+- **Ejercicios**:
+  - Identifica la letra mostrada
+  - Practica la pronunciación
+  - Completa los ejercicios de escritura
+
+#### 2.3 Sección Ejercicios
+- **Acceso**: Haz clic en "Principiante" y selecciona "EJERCICIO"
+- **Tipos de Ejercicios**:
+  - Identificación de letras
+  - Asociación de sonidos
+  - Ejercicios de escritura
+- **Evaluación**:
+  - Recibe retroalimentación inmediata
+  - Visualiza tu progreso
+  - Repasa los conceptos aprendidos
+
+### 3. Nivel Intermedio
+- **Acceso**: Haz clic en "Intermedio" en la página principal
+- **Contenido**:
+  - Lecciones más complejas
+  - Ejercicios integrados
+  - Evaluaciones periódicas
+- **Características**:
+  - Sistema de progreso
+  - Ejercicios prácticos
+  - Retroalimentación detallada
+
+### 4. Nivel Avanzado
+- **Acceso**: Haz clic en "Avanzado" en la página principal
+- **Contenido**:
+  - Lecciones expertas
+  - Proyectos prácticos
+  - Evaluaciones finales
+- **Características**:
+  - Contenido especializado
+  - Ejercicios avanzados
+  - Sistema de evaluación completo
+
+### 5. Controles Generales
+- **Navegación**:
+  - Botón "Inicio" ⬅️: Regresa a la página principal
+  - Menú de navegación: Accede a diferentes secciones
+  - Botones de flecha: Navega entre elementos
+- **Interacción**:
+  - Botón de reproducción 🔊: Escucha pronunciaciones
+  - Imágenes interactivas: Haz clic para más información
+  - Ejercicios: Completa las actividades propuestas
+
+### 6. Consejos de Uso
+1. **Progreso Secuencial**:
+   - Comienza por el nivel principiante
+   - Completa todos los ejercicios antes de avanzar
+   - Practica regularmente
+
+2. **Optimización del Aprendizaje**:
+   - Utiliza los controles de audio para practicar pronunciación
+   - Repite los ejercicios hasta dominarlos
+   - Utiliza la retroalimentación para mejorar
+
+3. **Solución de Problemas**:
+   - Si el audio no funciona, verifica el volumen del sistema
+   - Si las imágenes no cargan, verifica tu conexión a internet
+   - Si los ejercicios no responden, recarga la página
+
+### 7. Requisitos del Sistema
+- **Navegador Web**:
+  - Chrome (recomendado)
+  - Firefox
+  - Safari
+  - Edge
+- **Conexión a Internet**: Para cargar recursos y audio
+- **Altavoces o Auriculares**: Para ejercicios de pronunciación
+- **Resolución Mínima**: 1024x768 píxeles
+
+### 8. Soporte
+Si encuentras algún problema o tienes preguntas:
+1. Verifica la sección de solución de problemas
+2. Revisa los requisitos del sistema
+3. Contacta al soporte técnico
 
 ## Estructura de Archivos CSS
 - `styles.css` (238KB):
@@ -167,17 +349,3 @@ npm install
   - `main.js`: Funcionalidades core
   - `ui.js`: Interfaz de usuario
 - `js/leccionesJS/`: Scripts de las lecciones que contiene el proyecto
-
-## Contribución
-Si deseas contribuir al proyecto:
-1. Haz un Fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## Licencia
-Este proyecto está bajo la Licencia MIT.
-
-## Contacto
-Si tienes alguna pregunta o sugerencia, no dudes en contactarnos.
